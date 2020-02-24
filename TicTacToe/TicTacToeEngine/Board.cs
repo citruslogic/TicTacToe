@@ -43,7 +43,7 @@ namespace TicTacToe.TicTacToeEngine
                 case 9: board[8] = playerName; break;
             }
 
-        } //Controls if the player is X or O.
+        } // player is X or O.
 
         public void HorizontalWin()
         {
@@ -69,7 +69,7 @@ namespace TicTacToe.TicTacToeEngine
                     }
 
 
-                    Console.WriteLine("Please press any key to reset the game");
+                    Console.WriteLine("Press any key to reset the game");
                     Console.ReadKey();
                     Reset();
 
@@ -91,14 +91,14 @@ namespace TicTacToe.TicTacToeEngine
                     Console.Clear();
                     if (player == 'X')
                     {
-                        Console.WriteLine("Player 1, that was Fantastic.\nA vertical win!\nYou're the Tic Tac Toe Master!\n");
+                        Console.WriteLine("Player 1 won." + Environment.NewLine);
                     }
                     else
                     {
-                        Console.WriteLine("Player 2, that was Fantastic.\nA vertical win!\nYou're the Tic Tac Toe Master!\n");
+                        Console.WriteLine("Player 2 won." + Environment.NewLine);
                     }
 
-                    Console.WriteLine("Please press any key to reset the game");
+                    Console.WriteLine("Press any key to reset the game.");
                     Console.ReadKey();
                     Reset();
 
@@ -119,18 +119,14 @@ namespace TicTacToe.TicTacToeEngine
                     Console.Clear();
                     if (player == 'X')
                     {
-                        Console.WriteLine("WOW!, player 1 that's a diagonal win! " +
-                                          "\nExcellently played, it's one for the ages! " +
-                                          "\nYou're the Tic Tac Toe Legend!\n \n \n");
+                        Console.WriteLine("Player 1 won." + Environment.NewLine);
                     }
                     else
                     {
-                        Console.WriteLine("WOW!, player 2 that's a diagonal win! " +
-                                          "\nExcellently played, it's one for the ages! " +
-                                          "\nYou're the Tic Tac Toe Legend!\n \n \n");
+                        Console.WriteLine(@"Player 2 won." + Environment.NewLine);
                     }
 
-                    Console.WriteLine("Please press any key to reset the game");
+                    Console.WriteLine("Press any key to reset the game.");
                     Console.ReadKey();
                     Reset();
 
@@ -143,8 +139,8 @@ namespace TicTacToe.TicTacToeEngine
         {
 
             {
-                Console.WriteLine("Aw gosh... it's a draw." +
-                                  "\nPlease press any key to reset the game and try again!");
+                Console.WriteLine("Draw." + Environment.NewLine +
+                                  "Press any key to reset the game.");
                 Console.ReadKey();
                 Reset();
 
