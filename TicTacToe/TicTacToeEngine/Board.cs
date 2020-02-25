@@ -2,7 +2,7 @@
 
 namespace TicTacToe.TicTacToeEngine
 {
-    public class Board
+    public class Board : IBoard
     {
         public char playerName = ' '; 
         public char[] players = { 'X', 'O' };
@@ -11,6 +11,7 @@ namespace TicTacToe.TicTacToeEngine
         {
             '1', '2', '3','4', '5', '6','7', '8', '9'
         };
+        public string status = string.Empty;
 
         public void Reset()
         {
@@ -20,32 +21,45 @@ namespace TicTacToe.TicTacToeEngine
             };
 
             board = boardInitializeArr;
-            //DrawBoard();
             turns = 0;
         }
 
         public void XorO(int player, int input)
         {
 
-            if (player == 1) playerName = 'X';
-            else if (player == 2) playerName = 'O';
+            if (player == 1)
+            {
+                playerName = 'X';
+            }
+            else if (player == 2)
+            {
+                playerName = 'O';
+            }
 
             switch (input)
             {
-                case 1: board[0] = playerName; break;
-                case 2: board[1] = playerName; break;
-                case 3: board[2] = playerName; break;
-                case 4: board[3] = playerName; break;
-                case 5: board[4] = playerName; break;
-                case 6: board[5] = playerName; break;
-                case 7: board[6] = playerName; break;
-                case 8: board[7] = playerName; break;
-                case 9: board[8] = playerName; break;
+                case 1: board[0] = playerName; 
+                    break;
+                case 2: board[1] = playerName; 
+                    break;
+                case 3: board[2] = playerName; 
+                    break;
+                case 4: board[3] = playerName; 
+                    break;
+                case 5: board[4] = playerName;
+                    break;
+                case 6: board[5] = playerName; 
+                    break;
+                case 7: board[6] = playerName; 
+                    break;
+                case 8: board[7] = playerName; 
+                    break;
+                case 9: board[8] = playerName; 
+                    break;
             }
+        } 
 
-        } // player is X or O.
-
-        public void HorizontalWin()
+        public string HorizontalWin()
         {
 
             foreach (char playerName in players)
@@ -54,31 +68,27 @@ namespace TicTacToe.TicTacToeEngine
                     || ((board[3] == playerName) && (board[4] == playerName) && (board[5] == playerName))
                     || ((board[6] == playerName) && (board[7] == playerName) && (board[8] == playerName)))
                 {
-                    Console.Clear();
                     if (playerName == 'X')
                     {
-                        Console.WriteLine("Congratulations Player 1.\nYou have a achieved a horizontal win! " +
-                                          "\nYou're the Tic Tac Toe Master!\n" +
-                                          "\nTurns taken{0}", turns);
+                        status = $"Player 1 wins in {turns} turns.";
                     }
                     else if (playerName == 'O')
                     {
-                        Console.WriteLine("Congratulations Player 2.\nYou have a achieved a horizontal win! " +
-                                          "\nYou're the Tic Tac Toe Master!\n" +
-                                          "\nTurns taken{0}", turns);
+                        status = $"Player 2 wins in {turns} turns.";
                     }
+                }
 
-
-                    Console.WriteLine("Press any key to reset the game");
-                    Console.ReadKey();
+                if (!string.IsNullOrEmpty(status))
+                {
                     Reset();
-
-                    break;
+                    return status;
                 }
             }
-        } //Method is called to check for a horizontal win.  
 
-        public void VerticalWin()
+            return string.Empty;
+        }  
+
+        public string VerticalWin()
         {
             char[] players = { 'X', 'O' };
 
@@ -88,26 +98,28 @@ namespace TicTacToe.TicTacToeEngine
                     || ((board[1] == player) && (board[4] == player) && (board[7] == player))
                     || ((board[2] == player) && (board[5] == player) && (board[8] == player)))
                 {
-                    Console.Clear();
+                    Reset();
                     if (player == 'X')
                     {
-                        Console.WriteLine("Player 1 won." + Environment.NewLine);
+                        status = $"Player 1 won in {turns} turns." + Environment.NewLine;
                     }
                     else
                     {
-                        Console.WriteLine("Player 2 won." + Environment.NewLine);
+                        status = $"Player 2 won in {turns} turns." + Environment.NewLine;
                     }
+                }
 
-                    Console.WriteLine("Press any key to reset the game.");
-                    Console.ReadKey();
+                if (!string.IsNullOrEmpty(status))
+                {
                     Reset();
-
-                    break;
+                    return status;
                 }
             }
-        } //Method is called to check for a vertical win.  
 
-        public void DiagonalWin()
+            return string.Empty;
+        } 
+
+        public string DiagonalWin()
         {
             char[] players = { 'X', 'O' };
 
@@ -116,35 +128,35 @@ namespace TicTacToe.TicTacToeEngine
                 if (((board[0] == player) && (board[4] == player) && (board[8] == player))
                     || ((board[6] == player) && (board[4] == player) && (board[2] == player)))
                 {
-                    Console.Clear();
                     if (player == 'X')
                     {
-                        Console.WriteLine("Player 1 won." + Environment.NewLine);
+                        status = $"Player 1 won in {turns} turns." + Environment.NewLine;
                     }
                     else
                     {
-                        Console.WriteLine(@"Player 2 won." + Environment.NewLine);
+                        status = $"Player 2 won in {turns} turns." + Environment.NewLine;
                     }
-
-                    Console.WriteLine("Press any key to reset the game.");
-                    Console.ReadKey();
+                }
+                
+                if (!string.IsNullOrEmpty(status))
+                {
                     Reset();
-
-                    break;
+                    return status;
                 }
             }
-        } //Method is called to check for a diagonal win.
 
-        public void Draw()
+            return string.Empty;
+        }
+
+        public bool Draw()
         {
-
+            if (turns == 10)
             {
-                Console.WriteLine("Draw." + Environment.NewLine +
-                                  "Press any key to reset the game.");
-                Console.ReadKey();
                 Reset();
-
+                return true;
             }
-        } //Method is called to check if the game is a draw.
+
+            return false;
+        } 
     }
 }
