@@ -8,3 +8,4 @@ A TicTacToe library that can be used anywhere.
 3. Draw() should be boolean because after the other three conditions for winning a draw can be determined. 
 4. The board is an array type instead of a Vector. 
 5. The board does not have an undo feature; game state cannot be replayed. 
+6. Invalid moves include trying to occupy the same space as another player and choosing an invalid tile.
