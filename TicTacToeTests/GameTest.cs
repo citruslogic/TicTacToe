@@ -19,27 +19,19 @@ namespace TicTacToeTests
         [TestCase]
         public void ReadBoardTiles()
         {
-            board[0] = 'X';
-            board[1] = 'X';
-            board[2] = 'X';
-
-            board[3] = 'O';
-            board[7] = 'O';
-            board[8] = 'O';
-
             Assert.IsNotNull(board);
         }
 
         [TestCase]
         public void CheckForHorizontalWin()
         {
-            board[0] = 'X';
-            board[1] = 'X';
-            board[2] = 'X';
 
-            board[3] = 'O';
-            board[7] = 'O';
-            board[8] = 'O';
+            game.Reset();
+            game.XorO(1, 1);
+            game.XorO(2, 5);
+            game.XorO(1, 2);
+            game.XorO(2, 7);
+            game.XorO(1, 3);
 
             var status = game.HorizontalWin();
 
